@@ -9,14 +9,12 @@ export const requestLoggerOptions = {
     ),
     msg: 'HTTP {{req.method}} {{req.url}}',
     expressFormat: true,
-    colorize: false,
 };
 
 export const errorLoggerOptions = {
     transports: [new winston.transports.Console()],
     format: winston.format.combine(
-        winston.format.json(),
-        winston.format.prettyPrint(),
         winston.format.colorize({ all: true }),
+        winston.format.json(),
     ),
 };
