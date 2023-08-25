@@ -1,5 +1,7 @@
-import express, { Express, Response, Request } from 'express';
+import express, { Express } from 'express';
 import { errorLogger, requestLogger } from './middleware/logging';
+import { getServerStatus } from './handlers/health';
+import { getBoxsore } from './handlers/getBoxscore';
 
 const app: Express = express();
 
@@ -7,9 +9,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(requestLogger);
 
-app.use('/health', function (_req: Request, res: Response) {
-    res.status(200).end();
-});
+app.use('/health', getServerStatus);
+app.use('/v1/boxscore/:id', getBoxsore);
 
 app.use(errorLogger);
 
