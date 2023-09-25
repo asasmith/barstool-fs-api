@@ -22,7 +22,7 @@ export async function getBoxsore (req: Request, res: Response, next: NextFunctio
                 const dateAsString = date.toISOString();
                 const { data } = await axios.get(boxscorUrl);
 
-                const res = await boxscore.updateOne({
+                await boxscore.updateOne({
                     league: data.league,
                     away_team: {
                         team_id: data.away_team.team_id,
