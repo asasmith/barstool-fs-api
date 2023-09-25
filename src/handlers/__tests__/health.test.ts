@@ -1,6 +1,8 @@
-import { describe, expect, it } from '@jest/globals';
+import { describe, expect, it, jest } from '@jest/globals';
 import { app } from '../../server';
 import request from 'supertest';
+
+jest.mock('../../utils/mongoInstance');
 
 describe('/health', function () {
     it('should return 200 status when server is running', async function () {
