@@ -3,6 +3,7 @@ import { errorLogger, requestLogger } from './middleware/logging';
 import { getServerStatus } from './handlers/health';
 import { getBoxsore } from './handlers/getBoxscore';
 import { mongoInstance } from './utils/mongoInstance';
+import cors from 'cors';
 
 mongoInstance().catch(function (error) {
     console.error(error);
@@ -10,6 +11,7 @@ mongoInstance().catch(function (error) {
 
 const app: Express = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(requestLogger);
